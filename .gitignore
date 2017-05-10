@@ -1,0 +1,7 @@
+
+__puche__
+*.pyc
+.idea/vcs.xml
+*/__pycache__/
+
+

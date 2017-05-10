@@ -1,0 +1,144 @@
+version: 2.3.2
+author: fireln
+createtime: 2017-01-12
+setting:
+    constenthost: &chost
+        host:  http://consultant.test.didixl.com
+    doctorhost: &dhost
+        host:  http://doctor.test.didixl.com
+
+caseinfo:
+    -
+        caseid: 1
+        casename: "设置量表"
+        <<: *chost
+        api: /api/Assessment
+        method: post
+        parames: {
+                    "Parames": [
+                        {
+                            "UserId": 187,
+                            "AssessmentId": 2,
+                            "AssessmentKind": 2,
+                            "AssessmentName": "量表名称",
+                            "AssessmentUrl": "www.量表Url.com",
+                            "Mode": 1
+                        }
+                    ],
+                      "Type": "body",
+                      "changeact": "False",
+                      "changeactkey": "False",
+                      "fixedact":  "False",
+                      "fixedactkey": "False",
+                      "RandomNum": "False"
+                  }
+        checkdata: {
+            "checktype": "code",
+            "checkdata":
+        }
+        ResponseSaveType: 0
+
+    -
+        caseid: 2
+        casename: "获取患者当天的量表提醒"
+        <<: *chost
+        api: /api/Assessment/record/187
+        method: get
+        parames: {
+                    "Parames": "null",
+                      "Type": "body",
+                      "changeact": "False",
+                      "changeactkey": "False",
+                      "fixedact":  "False",
+                      "fixedactkey": "False",
+                      "RandomNum": "False"
+                  }
+        checkdata: {
+            "checktype": "code",
+            "checkdata":
+        }
+        ResponseSaveType: 0
+
+    -
+        caseid: 3
+        casename: "获取患者量表ID"
+        <<: *chost
+        api: /api/Assessment/schedule/187
+        method: get
+        parames: {
+                    "Parames": "null",
+                      "Type": "body",
+                      "changeact": "False",
+                      "changeactkey": "False",
+                      "fixedact":  "False",
+                      "fixedactkey": "False",
+                      "RandomNum": "False"
+                  }
+        checkdata: {
+            "checktype": "code",
+            "checkdata":
+        }
+        ResponseSaveType: 0
+    -
+        caseid: 4
+        casename: "修改量表周期"
+        <<: *chost
+        api: /api/Assessment
+        method: put
+        parames: {
+                    "Parames": {
+                          "AssessmentId": 2,
+                          "Cycle": 10
+                    },
+                    "Type": "body",
+                    "changeact": "False",
+                    "changeactkey": "False",
+                    "fixedact":  "False",
+                    "fixedactkey": "False",
+                    "RandomNum": "False"
+                  }
+        checkdata: {
+            "checktype": "code",
+            "checkdata":
+        }
+        ResponseSaveType: 0
+    -
+        caseid: 5
+        casename: "更新量表状态为已填"
+        <<: *chost
+        api: /api/Assessment/Finish/2
+        method: put
+        parames: {
+                    "Parames": "null",
+                    "Type": "body",
+                    "changeact": "False",
+                    "changeactkey": "False",
+                    "fixedact":  "False",
+                    "fixedactkey": "False",
+                    "RandomNum": "False"
+                  }
+        checkdata: {
+            "checktype": "code",
+            "checkdata":
+        }
+        ResponseSaveType: 0
+    -
+        caseid: 6
+        casename: "删除量表提醒"
+        <<: *chost
+        api: /api/Assessment/2
+        method: delete
+        parames: {
+                    "Parames": "null",
+                    "Type": "body",
+                    "changeact": "False",
+                    "changeactkey": "False",
+                    "fixedact":  "False",
+                    "fixedactkey": "False",
+                    "RandomNum": "False"
+                  }
+        checkdata: {
+            "checktype": "code",
+            "checkdata":
+        }
+        ResponseSaveType: 0
