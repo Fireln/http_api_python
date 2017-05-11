@@ -25,7 +25,7 @@ class QaBusinessOne(getcasebase.GetCase):
 
 
 if __name__ == '__main__':
-    casefilename = setting.casedirpath+setting.testname['2.3.2']
+    casefilename = setting.casedirpath+setting.testname['qa']
     g= QaBusinessOne(casefilename)
     for i in range(6):
         print(g.getcase(i))

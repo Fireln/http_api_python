@@ -19,6 +19,11 @@ class Processing:
         self.pj = processjson.ProcessJson()
         self.tojson = tojson.ToJson()
         self.parames = {}
+        self.pathkey = []
+        self.lastactkey = []
+        self.styactkey = []
+        self.randomkey = []
+
 
     def getparames(self,parames):
         """
@@ -26,47 +31,76 @@ class Processing:
         :param parames:
         :return:返回最终使用的Parames
         """
-        self.parames = parames
-        ak = isinstance(self.parames["changeactkey"],list)
-        jk = isinstance(self.parames["fixedactkey"],list)
-        rn = isinstance(self.parames["RandomNum"],list)
-        if  ak:
-            self.parames = self.process_Jsonkey('changeact')
-        if  jk:
-            self.parames = self.process_Jsonkey('fixedact')
-        if  rn:
-            self.parames = self.process_RandomNum()
+        self.parames = parames["Parames"]
+        self.pathkey = self.parames.get('pathkey')
+        self.lastactkey = self.parames.get('lastactkey')
+        self.styactkey = self.parames.get('styactkey')
+        self.randomkey = self.parames.get('randomkey')
+        usepath = self.parames.get('usepath')
+        usequery = self.parames.get('usequery')
+        usebody = self.parames.get('usebody')
+        type = {
+            "path":self.process_path,
+            "query":self.process_query,
+            "body":self.procss_body
+        }
+        for i in self.parames["Type"]:
+            type[i](usepath)
+        return self.parames
+
+
+    def use(self,usepath):
+
+        value = []
+        process = {
+            "lastactkey": self.process_Jsonkey,
+            "styactkey": self.process_Jsonkey,
+            "randomkey": self.process_RandomNum
+        }
+        if "lastactkey" in usepath:
+            value1 = process.get("process")(self.lastactkey,"lastact")
+            value.append(value1)
+        if "styactkey" in usepath:
+            value2 = process.get("process")(self.styactkey,"styact")
+            value.append(value2)
+        if "randomkey" in usepath:
+            value3 = process.get("process")(self.randomkey)
+            value.append(value3)
+
+
         return self.parames['Parames']
 
-
-    def process_Jsonkey(self,type):
-        """
-        1.只做了response是一层结构的取值
-        2.根据具体需求进行重写
-        :param type: 获取参数类型
-                    1.changeact：上个接口response的返回结果
-                    2.fixedact： 固定接口response的返回结果
-                    3.每次调用根据传进来的type取到相应的值
-        :return:
-        """
-        requestkey = self.parames[type] #request中所使用的key,用例中用type作为key
-        responsekey = self.parames[type+'key'] #使用response中的key,用例中用type + key(这里是指字符串key)做为key
-        defaultvalue = self.parames[type+'default']
-        jsondata = self.pj.readJson()
-        parame = self.parames['Parames']
-        if jsondata[type] == '':
-            for key1,key2 in zip(requestkey,defaultvalue):
-                parame[key1] = key2
-                return self.parames
+    def process_path(self,usepath):
+        if usepath:
+           pass
         else:
-            if isinstance(parame,str):
-                for key in responsekey:
-                    parame = jsondata[type]['Data'][key]
-                return self.parames
-            elif isinstance(parame,dict):
-                for key1,key2 in zip(requestkey,responsekey):
-                    parame[key1] = jsondata[type]['Data'][key2]
-                return self.parames
+            path = self.parames.get('path')
+            value = self.use(usepath)
+            newpath = path % value
+            self.parames["path"] = newpath
+
+
+    def process_query(self,query,):
+
+        return
+
+
+    def procss_body(self,body):
+
+        return
+
+
+    def process_Jsonkey(self,keylist,type):
+
+
+        jsondata = self.pj.readJson() #拿出结果
+        lastact = jsondata.get('lastact')
+        styact = jsondata.get('styact')
+        if type == "lastact":
+            return self.get_value(lastact,keylist)
+        else:
+            return self.get_value(styact,keylist)
+
 
 
     def process_RandomNum(self):
@@ -84,6 +118,14 @@ class Processing:
         return self.parames
 
 
+    def get_value(self,data,keylist):
+
+        if len(keylist) == 0:
+            return data
+        else:
+            da = data.get(keylist[0])
+            tt = keylist[1:]  #用切片的原因是因为pop后如果只有一个元素的话就会变成String类型
+            return self.get_value(da,tt)
 
 
 

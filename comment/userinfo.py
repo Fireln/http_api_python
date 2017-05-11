@@ -1,6 +1,6 @@
 import requests
 import hashlib
-class GetToken:
+class GetUserInfo:
     def md(self,num):
         #print(hashlib.new('md5',num).hexdigest())
         return hashlib.new('md5',num).hexdigest()
@@ -8,17 +8,14 @@ class GetToken:
         '''
             生成token
         '''
-        self.url = r'http://oauth.test.didixl.com/user/authenticate'
-        self.data = {
-                'username': '13783783183',
-                'password': '111111'
-            }
-        self.res = requests.put(self.url, json=self.data)
+        self.url = r'http://test.jishulink.com:8080/jishulink_test/user/authenticate/name?' \
+                   r'name=13783783183&password=111111'
+
+        self.res = requests.put(self.url)
         if self.res.status_code == 200:
-            self.token = self.res.json()['AccessToken']
-            return self.token
+            return self.res
         else:
-            print('登录失败，请确认账号密码！')
+            return self.res.status_code,self.res.headers
 
 
 if __name__ == '__main__':

@@ -23,8 +23,8 @@ class ProcessJson:
         """
         jf = self.openJson()
         default = {
-            'changeact':'',
-            'fixedact':''
+            'lastact':'',
+            'styact':''
         }
         try:
             str = jf.read()
@@ -52,16 +52,16 @@ class ProcessJson:
         code = response.status_code
         dict = self.readJson()
         if code == 200 and writekey == 1:
-            dict['fixedact'] = response.json()
+            dict['styact'] = response.json()
             return dict
         elif code == 200 and writekey != 1:
-            dict['changeact'] = response.json()
+            dict['lastact'] = response.json()
             return dict
         elif code != 200 and writekey == 1:
-            dict['fixedact'] = ''
+            dict['styact'] = ''
             return dict
         elif code != 200 and writekey != 1:
-            dict['changeact'] = ''
+            dict['lastact'] = ''
             return dict
 
     def writeJson(self,response,writekey):

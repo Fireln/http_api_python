@@ -10,9 +10,9 @@ casedirpath = os.path.split(os.path.realpath(__file__))[0]+r'\casedata'
 reportdirpath = os.path.split(os.path.realpath(__file__))[0]+r'\report'
 actpath = os.path.split(os.path.realpath(__file__))[0]+r'\processParames\act.json'
 
-print(casedirpath)
+
 testname = {
-    '2.3.2':r'\testcase.yaml'
+    'qa':r'\testcase.yaml'
 }
 
 reportname = {

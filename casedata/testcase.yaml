@@ -2,140 +2,35 @@ version: 2.3.2
 author: fireln
 createtime: 2017-01-12
 setting:
-    constenthost: &chost
-        host:  http://consultant.test.didixl.com
+    constenthost: &hostone
+        host:  http://test.jishulink.com:8080/jishulink_test
     doctorhost: &dhost
         host:  http://doctor.test.didixl.com
 
 caseinfo:
     -
         caseid: 1
-        casename: "设置量表"
-        <<: *chost
-        api: /api/Assessment
-        method: post
+        casename: "登录"
+        <<: *hostone
+        method: put
         parames: {
-                    "Parames": [
+                    "Parames":
                         {
-                            "UserId": 187,
-                            "AssessmentId": 2,
-                            "AssessmentKind": 2,
-                            "AssessmentName": "量表名称",
-                            "AssessmentUrl": "www.量表Url.com",
-                            "Mode": 1
-                        }
-                    ],
-                      "Type": "body",
-                      "changeact": "False",
-                      "changeactkey": "False",
-                      "fixedact":  "False",
-                      "fixedactkey": "False",
-                      "RandomNum": "False"
-                  }
-        checkdata: {
-            "checktype": "code",
-            "checkdata":
-        }
-        ResponseSaveType: 0
-
-    -
-        caseid: 2
-        casename: "获取患者当天的量表提醒"
-        <<: *chost
-        api: /api/Assessment/record/187
-        method: get
-        parames: {
-                    "Parames": "null",
-                      "Type": "body",
-                      "changeact": "False",
-                      "changeactkey": "False",
-                      "fixedact":  "False",
-                      "fixedactkey": "False",
-                      "RandomNum": "False"
-                  }
-        checkdata: {
-            "checktype": "code",
-            "checkdata":
-        }
-        ResponseSaveType: 0
-
-    -
-        caseid: 3
-        casename: "获取患者量表ID"
-        <<: *chost
-        api: /api/Assessment/schedule/187
-        method: get
-        parames: {
-                    "Parames": "null",
-                      "Type": "body",
-                      "changeact": "False",
-                      "changeactkey": "False",
-                      "fixedact":  "False",
-                      "fixedactkey": "False",
-                      "RandomNum": "False"
-                  }
-        checkdata: {
-            "checktype": "code",
-            "checkdata":
-        }
-        ResponseSaveType: 0
-    -
-        caseid: 4
-        casename: "修改量表周期"
-        <<: *chost
-        api: /api/Assessment
-        method: put
-        parames: {
-                    "Parames": {
-                          "AssessmentId": 2,
-                          "Cycle": 10
-                    },
-                    "Type": "body",
-                    "changeact": "False",
-                    "changeactkey": "False",
-                    "fixedact":  "False",
-                    "fixedactkey": "False",
-                    "RandomNum": "False"
-                  }
-        checkdata: {
-            "checktype": "code",
-            "checkdata":
-        }
-        ResponseSaveType: 0
-    -
-        caseid: 5
-        casename: "更新量表状态为已填"
-        <<: *chost
-        api: /api/Assessment/Finish/2
-        method: put
-        parames: {
-                    "Parames": "null",
-                    "Type": "body",
-                    "changeact": "False",
-                    "changeactkey": "False",
-                    "fixedact":  "False",
-                    "fixedactkey": "False",
-                    "RandomNum": "False"
-                  }
-        checkdata: {
-            "checktype": "code",
-            "checkdata":
-        }
-        ResponseSaveType: 0
-    -
-        caseid: 6
-        casename: "删除量表提醒"
-        <<: *chost
-        api: /api/Assessment/2
-        method: delete
-        parames: {
-                    "Parames": "null",
-                    "Type": "body",
-                    "changeact": "False",
-                    "changeactkey": "False",
-                    "fixedact":  "False",
-                    "fixedactkey": "False",
-                    "RandomNum": "False"
+                            "query": "?name=13783783183&password=111111",
+                            "body": {},
+                        },
+                    "path": "/user/authenticate/name",
+                    "type": ["query"],
+                    "usepath": ['lastactkey','styactkey','randomkey'], #path里面是否有用到参数,用到的是哪里的参数
+                    "usequery": False, #query里面是否用到参数，用到的是哪里的参数
+                    "usebody": False, #body里是否用到参数用到的是哪里的参数
+                    "pathkey": [['1','2']], #取出value用到的key路径
+                    #"uselastact": False, #是否用到了上个接口的返回值
+                    "lastactkey": [], #取出value用到的key路径
+                    #"usestyact":  False, #是否用到了固定接口的返回值
+                    "styactkey": [], #取出value用到的key路径
+                    #"userandom": False, #参数中是否有用到随机数
+                    "randomkey": []
                   }
         checkdata: {
             "checktype": "code",
