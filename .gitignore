@@ -1,7 +1,7 @@
 
 __puche__
-*.pyc
+
 .idea/vcs.xml
-*/__pycache__/
 
 
+__pycache__/

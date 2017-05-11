@@ -79,7 +79,7 @@ class ProcessJson:
         try:
             jf = self.openJson()
             jf.truncate() #清除原有数据
-            data = json.dumps(dict)
+            data = json.dumps(dict,indent=4)
             jf.write(data)
             jf.close()
         except Exception as e:

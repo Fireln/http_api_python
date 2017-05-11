@@ -13,15 +13,15 @@ class Run(runcase.RunCase):
 
     def runcase232(self):
         casefilename = setting.casedirpath + setting.testname['2.3.2']
-        getcase = getcaseqa.GetCase(casefilename)
-        function = getcase.getcase232
+        getcase = getcaseqa.QaBusinessOne(casefilename)
+        function = getcase.getcase
         length = getcase.getlen()
         self.runcase(length,function)
 
     def runcase231(self):
         casefilename = setting.casedirpath + setting.testname['2.3.2']
-        getcase = getcaseqa.GetCase(casefilename)
-        function = getcase.getcase232
+        getcase = getcaseqa.QaBusinessOne(casefilename)
+        function = getcase.getcase
         length = getcase.getlen()
         self.runcase(length,function)
 
@@ -34,6 +34,9 @@ class Run(runcase.RunCase):
 
 
 if __name__ == '__main__':
+    from comment import logging_class
+    Logging = logging_class.Logging()
+    Logging.clear_log()#清空日志文件
     r=Run()
     r.runcase232()
     r.runcase231()

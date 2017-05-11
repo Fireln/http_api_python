@@ -3,7 +3,7 @@ import json
 
 class HttpClent:
 
-    def __init__(self,token):
+    def __init__(self,uid):
         """
             初始化....
             Parames,host:域名
@@ -11,12 +11,10 @@ class HttpClent:
             Parames,params:path\query参数
             Parames,token:有效token
         """
-        self.token = token
+        self.uid = uid
         self. header = {
             "Accept":"application/json",
-            "Content-Type":"application/json",
-            "Authorization":'Bearer '+"%s" % self.token,
-            "Device":"android"
+            "Content-Type":"%s" % self.uid
        }
         self.runrequest = {
             'get':self.doGet,

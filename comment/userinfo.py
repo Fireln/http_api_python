@@ -8,12 +8,12 @@ class GetToken:
         '''
             生成token
         '''
-        self.url = r'http://oauth.test.didixl.com/api/account/login'
+        self.url = r'http://oauth.test.didixl.com/user/authenticate'
         self.data = {
-                'username': '13067816169',
-                'password': self.md(b'111111')
+                'username': '13783783183',
+                'password': '111111'
             }
-        self.res = requests.post(self.url, json=self.data)
+        self.res = requests.put(self.url, json=self.data)
         if self.res.status_code == 200:
             self.token = self.res.json()['AccessToken']
             return self.token

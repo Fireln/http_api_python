@@ -1,6 +1,6 @@
 from processParames import processjson
 from dotest import dorequest
-from comment import check,gettoken,logging_class
+from comment import check,userinfo,logging_class
 from report.creatreport import CreateReportModel
 import setting
 class RunCase:
@@ -13,7 +13,7 @@ class RunCase:
         self.summerysheetname = r'测试总况'
         self.detailssheetname = r'测试详情'
         self.check = check.Check()
-        self.login = gettoken.GetToken().login()
+        self.login = userinfo.GetToken().login()
         self.writejson = processjson.ProcessJson()
         self.createreportmodel = CreateReportModel()
         self.logging = logging_class.Logging()
@@ -42,7 +42,7 @@ class RunCase:
 
         token = self.login
         request = dorequest.HttpClent(token)
-        self.logging.clear_log()#清空日志文件
+
         try:
             for i in range(length):
                 caseid,casename,host,api,method,parame,checkdata,ResponseSaveType = function(i)
