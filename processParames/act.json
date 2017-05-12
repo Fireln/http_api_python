@@ -1,0 +1,24 @@
+{
+  "lastact":{
+    "rc":0,
+    "ret":{
+      "userid":"123456",
+      "name":"fireln",
+      "profile":{
+        "male":"nan",
+        "age":10
+      }
+    }
+  },
+  "styact":{
+    "rc":0,
+    "ret":{
+      "userid":"123456",
+      "name":"fireln",
+      "profile":{
+        "male":"nan",
+        "age":10
+      }
+    }
+  }
+}

@@ -16,20 +16,50 @@ caseinfo:
         parames: {
                     "Parames":
                         {
+                            "path": "/user/authenticate/name",
                             "query": "?name=13783783183&password=111111",
                             "body": {},
                         },
-                    "path": "/user/authenticate/name",
-                    "type": ["query"],
-                    "usepath": ['lastactkey','styactkey','randomkey'], #path里面是否有用到参数,用到的是哪里的参数
-                    "usequery": False, #query里面是否用到参数，用到的是哪里的参数
-                    "usebody": False, #body里是否用到参数用到的是哪里的参数
-                    "pathkey": [['1','2']], #取出value用到的key路径
-                    #"uselastact": False, #是否用到了上个接口的返回值
+                    "type": ["path"],
+                    "where": [], #哪里需要用到参数
+                    "usepath": [], #path里面是否有用到参数,用到的是哪里的参数
+                    "usequery": [], #query里面是否用到参数，用到的是哪里的参数
+                    "usebody": [], #body里是否用到参数用到的是哪里的参数
+                    "uselastact": [], #是否用到了上个接口的返回值
                     "lastactkey": [], #取出value用到的key路径
-                    #"usestyact":  False, #是否用到了固定接口的返回值
+                    "usestyact":  [], #是否用到了固定接口的返回值
                     "styactkey": [], #取出value用到的key路径
-                    #"userandom": False, #参数中是否有用到随机数
+                    "userandom": [], #参数中是否有用到随机数
+                    "randomkey": []
+                  }
+        checkdata: {
+            "checktype": "code",
+            "checkdata":
+        }
+        ResponseSaveType: 0
+
+    -
+        caseid: 1
+        casename: "登录"
+        <<: *hostone
+        method: put
+        parames: {
+                    "Parames":
+                        {
+                            "path": "/user/authenticate/name",
+                            "query": "?name=13783783183&password=111111",
+                            "body": {},
+                        },
+                    "type": ["path"],
+                    "where": [], #哪里需要用到参数
+                    "usepath": [], #path里面是否有用到参数,用到的是哪里的参数
+                    "usequery": [], #query里面是否用到参数，用到的是哪里的参数
+                    "usebody": [], #body里是否用到参数用到的是哪里的参数
+                    "uselastact": [], #是否用到了上个接口的返回值
+                    "lastactkey": [], #取出value用到的key路径
+                    "usestyact":  [], #是否用到了固定接口的返回值
+                    "styactkey": [], #取出value用到的key路径
+                    "userandom": [], #参数中是否有用到随机数
                     "randomkey": []
                   }
         checkdata: {

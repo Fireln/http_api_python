@@ -10,10 +10,10 @@ from getcase import getcaseqa
 class Test(unittest.TestCase):
 
     def test_qa(self):
-        casefilename = setting.casedirpath+setting.testname['2.3.2']
+        casefilename = setting.casedirpath+setting.testname['qa']
         b = getcaseqa.QaBusinessOne(casefilename)
         b.get_len_base()
-        b.getcase(1)
+        print(b.getcase(0))
 
 
 
