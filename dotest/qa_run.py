@@ -5,21 +5,14 @@ __author__ = 'Fireln'
     @time : 
 """
 import setting
-from dotest import runcase
+from dotest import runbase
 from getcase import getcaseqa
 
 
-class Run(runcase.RunCase):
+class Run(runbase.RunCase):
 
-    def runcase232(self):
-        casefilename = setting.casedirpath + setting.testname['2.3.2']
-        getcase = getcaseqa.QaBusinessOne(casefilename)
-        function = getcase.getcase
-        length = getcase.getlen()
-        self.runcase(length,function)
-
-    def runcase231(self):
-        casefilename = setting.casedirpath + setting.testname['2.3.2']
+    def qa_run(self):
+        casefilename = setting.casedirpath + setting.testname['qa']
         getcase = getcaseqa.QaBusinessOne(casefilename)
         function = getcase.getcase
         length = getcase.getlen()
@@ -28,7 +21,6 @@ class Run(runcase.RunCase):
 
 
     def creatreport(self):
-
         self.createreportmodel.create_report(self.num,self.data)
 
 
@@ -38,7 +30,6 @@ if __name__ == '__main__':
     Logging = logging_class.Logging()
     Logging.clear_log()#清空日志文件
     r=Run()
-    r.runcase232()
-    r.runcase231()
+    r.qa_run()
     r.creatreport()
 

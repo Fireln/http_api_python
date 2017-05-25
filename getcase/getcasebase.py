@@ -62,8 +62,9 @@ class GetCase:
         host = case['host']
         method = case['method']
         parames = case['parames']
+        type = case['type']
         checkdata = case['checkdata']
         ResponseSaveType = case['ResponseSaveType']
         parame = function(parames)
         #print(caseid,casename,host,api,method,parames,checkdata,ResponseSaveType)
-        return caseid,casename,host,method,parame,checkdata,ResponseSaveType
+        return caseid,casename,host,method,parame,type,checkdata,ResponseSaveType

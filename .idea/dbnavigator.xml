@@ -23,11 +23,7 @@
     <autoscroll-to-editor value="false" />
     <autoscroll-from-editor value="true" />
     <show-object-properties value="true" />
-    <loaded-nodes>
-      <connection connection-id="ccc451f4-8f10-4f8f-af6d-5f4429fc228d">
-        <schema name="jishulink-view-test" object-types="column, function, table, view" />
-      </connection>
-    </loaded-nodes>
+    <loaded-nodes />
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="ccc451f4-8f10-4f8f-af6d-5f4429fc228d">
@@ -44,8 +40,8 @@
     <last-used-providers />
   </component>
   <component name="DBNavigator.Project.FileConnectionMappingManager">
-    <mapping file-url="file://$PROJECT_DIR$/test.sql" connection-id="ccc451f4-8f10-4f8f-af6d-5f4429fc228d" current-schema="jishulink-view-test" />
     <mapping file-url="file://$PROJECT_DIR$/release.sql" connection-id="ccc451f4-8f10-4f8f-af6d-5f4429fc228d" current-schema="jishulink-view-test" />
+    <mapping file-url="file://$PROJECT_DIR$/test.sql" connection-id="ccc451f4-8f10-4f8f-af6d-5f4429fc228d" current-schema="jishulink-view-test" />
   </component>
   <component name="DBNavigator.Project.MethodExecutionManager">
     <method-browser />

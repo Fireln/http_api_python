@@ -12,13 +12,13 @@ caseinfo:
         casename: "广告"
         <<: *hostone
         method: get
+        type: ["path",] #指定拿哪个值拼路径
         parames: {
                     "Parames":
                         {
                             "path": "management/ad/group?labels=report",
                             "body": {},
                         },
-                    "type": ["path"], #指定拿哪个值拼路径
                     "where": [], #哪里需要用到什么参数
                     "lastactkey": [], #取出value用到的key路径
                     "styactkey": [], #取出value用到的key路径
@@ -34,13 +34,13 @@ caseinfo:
         casename: "获取答疑明星"
         <<: *hostone
         method: put
+        type: ["path",]
         parames: {
                     "Parames":
                         {
                             "path": "user/top_activity_users",
                             "body": {},
                         },
-                    "type": ["path"],
                     "where": [],
                     "lastactkey": [],
                     "styactkey": [],
@@ -56,13 +56,13 @@ caseinfo:
         casename: "获取未解决提问"
         <<: *hostone
         method: put
+        type: ["path",]
         parames: {
                     "Parames":
                         {
                             "path": "postCommon/college/search?express=QA&resolved=false",
                             "body": {},
                         },
-                    "type": ["path"],
                     "where": [],
                     "lastactkey": [],
                     "styactkey": [],
@@ -78,13 +78,13 @@ caseinfo:
         casename: "获取已解决提问"
         <<: *hostone
         method: put
+        type: ["path",]
         parames: {
                     "Parames":
                         {
                             "path": "qa/%s/followed_qa",
                             "body": {},
                         },
-                    "type": ["path"],
                     "where": [["path","userid"]],
                     "lastactkey": [],
                     "styactkey": [],
@@ -100,13 +100,13 @@ caseinfo:
         casename: "获取关注的提问"
         <<: *hostone
         method: put
+        type: ["path",]
         parames: {
                     "Parames":
                         {
                             "path": "qa/%s/followed_qa",
                             "body": {},
                         },
-                    "type": ["path"],
                     "where": [["path","userid"]],
                     "bodykey": [],
                     "lastactkey": [],
@@ -123,13 +123,13 @@ caseinfo:
         casename: "获取关注的板块"
         <<: *hostone
         method: put
+        type: ["path",]
         parames: {
                     "Parames":
                         {
                             "path": "tpoint/followed/%s/qa",
                             "body": {},
                         },
-                    "type": ["path"],
                     "where": [["path","userid"]],
                     "lastactkey": [],
                     "styactkey": [],
@@ -145,6 +145,7 @@ caseinfo:
         casename: "获取提问页右侧技术标签"
         <<: *hostone
         method: put
+        type: ["path",]
         parames: {
                     "Parames":
                         {
@@ -152,7 +153,6 @@ caseinfo:
                             "query": "",
                             "body": {},
                         },
-                    "type": ["path"],
                     "where": [],
                     "lastactkey": [],
                     "styactkey": [],
