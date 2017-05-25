@@ -4,7 +4,7 @@ class GetUserInfo:
     def md(self,num):
         #print(hashlib.new('md5',num).hexdigest())
         return hashlib.new('md5',num).hexdigest()
-    def login(self):
+    def login(self,*args):
         '''
             生成token
         '''
@@ -13,10 +13,11 @@ class GetUserInfo:
 
         self.res = requests.put(self.url)
         if self.res.status_code == 200:
-            return self.res
+            return self.res.json()["ret"]["registerInfo"]["userId"]
         else:
-            return self.res.status_code,self.res.headers
+            return "7515dec3-3668-4020-9777-9d5524bf89b9"
 
 
 if __name__ == '__main__':
-    print(GetToken().login())
+    g = GetUserInfo()
+    print(g.login())

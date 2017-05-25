@@ -8,6 +8,7 @@ __author__ = 'Fireln'
 from comment import tojson
 from processParames import processjson
 from datetime import datetime
+from comment import userinfo
 import time
 
 
@@ -17,6 +18,7 @@ class Processing:
     """
     def __init__(self,parames = None,lastactkey=None,styactkey=None,randomkey=None):
         self.pj = processjson.ProcessJson()
+        self.userinfo = userinfo.GetUserInfo()
         self.tojson = tojson.ToJson()
         self.parames = parames
         self.pathkey = []
@@ -32,59 +34,53 @@ class Processing:
         :return:返回最终使用的Parames
         """
         self.parames = parames
-        self.pathkey = self.parames.get('pathkey')
+        self.bodykey = self.parames.get('bodykey')
         self.lastactkey = self.parames.get('lastactkey')
         self.styactkey = self.parames.get('styactkey')
         self.randomkey = self.parames.get('randomkey')
         where = self.parames.get("where")
-        usequery = self.parames.get('usequery')
-        usebody = self.parames.get('usebody')
         type = {
             "path":self.process_path,
-            "query":self.process_query,
             "body":self.procss_body
         }
-        if isinstance(where,list):
+        if len(where) != 0:
             for i in where:
-                type[i]()
+                type[i[0]](i)
+            return self.parames["Parames"]
+        else:
             return self.parames["Parames"]
 
 
-    def use(self,usepath):
-
+    def use(self,num):
+        """
+        组装参数
+        :param usepath:
+        :return:
+        """
         value = []
         process = {
             "lastactkey": self.process_Jsonkey,
             "styactkey": self.process_Jsonkey,
-            "randomkey": self.process_RandomNum
+            "randomkey": self.process_RandomNum,
+            "userid": self.userinfo.login
         }
-        if "lastactkey" in usepath:
-            value1 = process.get("lastactkey")(self.lastactkey,"lastact")
+        data = num[1:]
+        for i in data:
+            value1 = process[i](i)
             value.append(value1)
-        if "styactkey" in usepath:
-            value2 = process.get("styactkey")(self.styactkey,"styact")
-            value.append(value2)
-        if "randomkey" in usepath:
-            value3 = process.get("randomkey")()
-            value.append(value3)
         return value
 
-    def process_path(self):
+    def process_path(self,num):
         """
         path处理方法
         :return:
         """
-        usepath = self.parames.get('usepath')
         path = self.parames.get('Parames').get("path")
-        value = self.use(usepath)
+        value = self.use(num)
         newpath = path % tuple(value)
         self.parames["Parames"]["path"] = newpath
         return self.parames.get('Parames').get("path")
 
-
-    def process_query(self,query,):
-
-        return
 
 
     def procss_body(self,body):
@@ -92,16 +88,16 @@ class Processing:
         return
 
 
-    def process_Jsonkey(self,keylist,type):
+    def process_Jsonkey(self,type):
 
 
         jsondata = self.pj.readJson() #拿出结果
         lastact = jsondata.get('lastact')
         styact = jsondata.get('styact')
         if type == "lastact":
-            return self.get_value(lastact,keylist)
+            return self.get_value(lastact,self.lastactkey)
         else:
-            return self.get_value(styact,keylist)
+            return self.get_value(styact,self.styactkey)
 
 
 

@@ -4,6 +4,7 @@ __author__ = 'Fireln'
     @auther : Fireln
     @time : 
 """
+import pytest
 import unittest
 import setting
 from getcase import getcaseqa
@@ -13,7 +14,7 @@ class Test(unittest.TestCase):
         casefilename = setting.casedirpath+setting.testname['qa']
         b = getcaseqa.QaBusinessOne(casefilename)
         b.get_len_base()
-        print(b.getcase(0))
+        print(b.getcase(5))
 
 
 

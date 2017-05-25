@@ -6,17 +6,16 @@ __author__ = 'Fireln'
 """
 import pymysql
 from xml.dom import minidom
-import os
+import setting
 
 class ConnMysql():
 
     def __init__(self):
         #self.host = host
-        conf = minidom.parse(r'F:\DiDiXLAPITEST\testdata\conf')
-        self.host = conf.getElementsByTagName("host")[0].firstChild.data
-        self.port = int(conf.getElementsByTagName("port")[0].firstChild.data)
-        self.user = conf.getElementsByTagName("user")[0].firstChild.data
-        self.passwd = conf.getElementsByTagName("passwd")[0].firstChild.data
+        self.host = setting.database.get("host")
+        self.port = setting.database.get("port")
+        self.user = setting.database.get("name")
+        self.passwd = setting.database.get("pwd")
 
 
     def createconn(self,database):
@@ -30,8 +29,9 @@ class ConnMysql():
         try:
             cur,conn = self.createconn(database)
             cur.execute(query)
-            self.processres(cur)
+            ret = self.processres(cur)
             self.closeconn(cur,conn)
+            return ret
         except Exception as e:
             print('查询命令错误',e)
     def do_update(self,query,database):
@@ -61,7 +61,7 @@ class ConnMysql():
     def processres(self,cur):
         rows = cur.fetchall()
         for i in rows:
-            print(i)
+            return i
     def closeconn(self,cur,conn):
         cur.close()
         conn.close()
@@ -69,4 +69,4 @@ class ConnMysql():
 
 if __name__ == '__main__':
     con = ConnMysql()
-    con.do_select(r'SELECT * from get WHERE id = 222','test')
+    con.do_select(r'SELECT user_id from tbl_vw_user WHERE telephone = 13007585173','jishulink-view-test')

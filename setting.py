@@ -31,4 +31,12 @@ log = {
 }
 
 
+database = {
+    'host':'120.55.131.33',
+    'name':'jishulink_test',
+    'pwd':'jishulink1194',
+    'port':3306
+}
+
+
 

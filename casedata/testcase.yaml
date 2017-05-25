@@ -1,35 +1,27 @@
-version: 2.3.2
+version: 没有版本规划
 author: fireln
-createtime: 2017-01-12
+createtime: 2017-05-25
 setting:
     constenthost: &hostone
-        host:  http://test.jishulink.com:8080/jishulink_test
+        host:  http://test.jishulink.com:8080/jishulink_test/
     doctorhost: &dhost
         host:  http://doctor.test.didixl.com
-
 caseinfo:
     -
         caseid: 1
-        casename: "登录"
+        casename: "广告"
         <<: *hostone
-        method: put
+        method: get
         parames: {
                     "Parames":
                         {
-                            "path": "/user/authenticate/name",
-                            "query": "?name=13783783183&password=111111",
+                            "path": "management/ad/group?labels=report",
                             "body": {},
                         },
-                    "type": ["path"],
-                    "where": [], #哪里需要用到参数
-                    "usepath": [], #path里面是否有用到参数,用到的是哪里的参数
-                    "usequery": [], #query里面是否用到参数，用到的是哪里的参数
-                    "usebody": [], #body里是否用到参数用到的是哪里的参数
-                    "uselastact": [], #是否用到了上个接口的返回值
+                    "type": ["path"], #指定拿哪个值拼路径
+                    "where": [], #哪里需要用到什么参数
                     "lastactkey": [], #取出value用到的key路径
-                    "usestyact":  [], #是否用到了固定接口的返回值
                     "styactkey": [], #取出value用到的key路径
-                    "userandom": [], #参数中是否有用到随机数
                     "randomkey": []
                   }
         checkdata: {
@@ -37,29 +29,133 @@ caseinfo:
             "checkdata":
         }
         ResponseSaveType: 0
-
     -
-        caseid: 1
-        casename: "登录"
+        caseid: 2
+        casename: "获取答疑明星"
         <<: *hostone
         method: put
         parames: {
                     "Parames":
                         {
-                            "path": "/user/authenticate/name",
-                            "query": "?name=13783783183&password=111111",
+                            "path": "user/top_activity_users",
                             "body": {},
                         },
                     "type": ["path"],
-                    "where": [], #哪里需要用到参数
-                    "usepath": [], #path里面是否有用到参数,用到的是哪里的参数
-                    "usequery": [], #query里面是否用到参数，用到的是哪里的参数
-                    "usebody": [], #body里是否用到参数用到的是哪里的参数
-                    "uselastact": [], #是否用到了上个接口的返回值
-                    "lastactkey": [], #取出value用到的key路径
-                    "usestyact":  [], #是否用到了固定接口的返回值
-                    "styactkey": [], #取出value用到的key路径
-                    "userandom": [], #参数中是否有用到随机数
+                    "where": [],
+                    "lastactkey": [],
+                    "styactkey": [],
+                    "randomkey": []
+                  }
+        checkdata: {
+            "checktype": "code",
+            "checkdata":
+        }
+        ResponseSaveType: 0
+    -
+        caseid: 3
+        casename: "获取未解决提问"
+        <<: *hostone
+        method: put
+        parames: {
+                    "Parames":
+                        {
+                            "path": "postCommon/college/search?express=QA&resolved=false",
+                            "body": {},
+                        },
+                    "type": ["path"],
+                    "where": [],
+                    "lastactkey": [],
+                    "styactkey": [],
+                    "randomkey": []
+                  }
+        checkdata: {
+            "checktype": "code",
+            "checkdata":
+        }
+        ResponseSaveType: 0
+    -
+        caseid: 4
+        casename: "获取已解决提问"
+        <<: *hostone
+        method: put
+        parames: {
+                    "Parames":
+                        {
+                            "path": "qa/%s/followed_qa",
+                            "body": {},
+                        },
+                    "type": ["path"],
+                    "where": [["path","userid"]],
+                    "lastactkey": [],
+                    "styactkey": [],
+                    "randomkey": []
+                  }
+        checkdata: {
+            "checktype": "code",
+            "checkdata":
+        }
+        ResponseSaveType: 0
+    -
+        caseid: 5
+        casename: "获取关注的提问"
+        <<: *hostone
+        method: put
+        parames: {
+                    "Parames":
+                        {
+                            "path": "qa/%s/followed_qa",
+                            "body": {},
+                        },
+                    "type": ["path"],
+                    "where": [["path","userid"]],
+                    "bodykey": [],
+                    "lastactkey": [],
+                    "styactkey": [],
+                    "randomkey": []
+                  }
+        checkdata: {
+            "checktype": "code",
+            "checkdata":
+        }
+        ResponseSaveType: 0
+    -
+        caseid: 6
+        casename: "获取关注的板块"
+        <<: *hostone
+        method: put
+        parames: {
+                    "Parames":
+                        {
+                            "path": "tpoint/followed/%s/qa",
+                            "body": {},
+                        },
+                    "type": ["path"],
+                    "where": [["path","userid"]],
+                    "lastactkey": [],
+                    "styactkey": [],
+                    "randomkey": []
+                  }
+        checkdata: {
+            "checktype": "code",
+            "checkdata":
+        }
+        ResponseSaveType: 0
+    -
+        caseid: 7
+        casename: "获取提问页右侧技术标签"
+        <<: *hostone
+        method: put
+        parames: {
+                    "Parames":
+                        {
+                            "path": "tpoint/qa/top_navigation",
+                            "query": "",
+                            "body": {},
+                        },
+                    "type": ["path"],
+                    "where": [],
+                    "lastactkey": [],
+                    "styactkey": [],
                     "randomkey": []
                   }
         checkdata: {
