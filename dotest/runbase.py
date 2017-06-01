@@ -24,6 +24,7 @@ class RunCase:
         self.data = {'info':[]}
 
 
+
     def create_data(self,*args):
 
         nowdata = {'caseid': args[0],'casename': args[1],'token': args[2],'url': args[3]+args[4],'parames': args[5],
@@ -55,8 +56,9 @@ class RunCase:
                         self.num['test_failed'] += 1
                         self.num['test_sum'] += 1
                     self.writejson.writeJson(response,ResponseSaveType)
-                    self.logging.write_log(setting.log['INFO'],casename+parame.get("path"))
+                    #self.logging.write_log(setting.log['INFO'],casename+parame.get("path"))
                     self.create_data(caseid,casename,"token",host,parame.get("path"),parame,checkdata,response.text,resoult)
+            return self.data
         except Exception as e:
             self.logging.write_log(setting.log['ERROR'],e)
 
