@@ -75,9 +75,11 @@ class Check():
             ActualRes = response.json()
             checktype = checkdata['checktype']
             checkdata = checkdata['checkdata']
-            actualRes = ActualRes['Data']
+            actualRes = ActualRes['ret']
             if checktype == 'code':
-                return self.passres
+                rc = ActualRes.get("rc")
+                if rc == 0:
+                    return self.passres
             if isinstance(checkdata,dict):
                 checkkeylist = checkdata.keys()
             else:

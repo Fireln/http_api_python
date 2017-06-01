@@ -10,4 +10,4 @@ class TestQaRun(unittest.TestCase):
 
     def test_qa_run(self):
 
-        qa = qa_run.
+        qa = qa_run.getcaseqa

@@ -150,7 +150,6 @@ caseinfo:
                     "Parames":
                         {
                             "path": "tpoint/qa/top_navigation",
-                            "query": "",
                             "body": {},
                         },
                     "where": [],

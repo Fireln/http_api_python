@@ -65,7 +65,7 @@ class HttpClent:
             'delete':self.do_delete
         }
         if method.lower() in request.keys():
-            if len(type) > 1:
+            if len(type) < 1:
                 pass
             else:
                 response = request[method.lower()](url,body)
