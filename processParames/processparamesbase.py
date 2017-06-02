@@ -83,12 +83,12 @@ class Processing:
 
 
 
-    def procss_body(self,body):
+    def procss_body(self,num):
 
-        body = self.parames.get('Parames').get("path")
-        value = self.use(body)
-        newbody = str(body) % tuple(value)
-        self.parames["Parames"]["body"] = eval(newbody)
+        body = self.parames.get('Parames').get("body")
+        value = self.use(num)
+        newbody = eval(str(body) % tuple(value))
+        self.parames["Parames"]["body"] = newbody
         return self.parames.get('Parames').get("body")
 
 

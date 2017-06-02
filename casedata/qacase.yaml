@@ -176,16 +176,38 @@ publishqa:
                         {
                             "path": "post/publish",
                             "body": {
-                             "authorId": [~,'7515dec3-3668-4020-9777-9d5524bf89b9'],
-                             "subject": [~,'dfgfdhghgjh?'],
+                             "authorId": [~,'%s'],
+                             "subject": [~,'测试测试测试测试?'],
                              "bodyText": [~,'sadsad43110'],
                              "postType": [~,'QA'],
                              "coins": [~,'20']
                             },
                         },
-                    "where": [],
+                    "where": [["body","userid"]],
                     "lastactkey": [],
                     "styactkey": [],
+                    "randomkey": []
+                  }
+        checkdata: {
+            "checktype": "code",
+            "checkdata":
+        }
+        ResponseSaveType: 1
+    -
+        caseid: 9
+        casename: "获取提问详情"
+        <<: *hostone
+        method: get
+        type: ["path",]
+        parames: {
+                    "Parames":
+                        {
+                            "path": "/post/%s",
+                            "body": {},
+                        },
+                    "where": [["body","styactkey"]],
+                    "lastactkey": [],
+                    "styactkey": ["styact","ret"],
                     "randomkey": []
                   }
         checkdata: {

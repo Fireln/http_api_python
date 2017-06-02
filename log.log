@@ -1,1 +1,1 @@
-2017-06-02 10:26:58,812 logging_class.py[line:46] INFO ·¢²¼ĞüÉÍÎÊ´ğpost/publish
+2017-06-02 15:24:01,369 logging_class.py[line:46] ERROR 'NoneType' object has no attribute 'get'
