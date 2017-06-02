@@ -27,35 +27,35 @@ class GetCase:
         except Exception as e:
             print(__file__,"openfile函数出错",e)
 
-    @property
-    def getcaseinfo(self):
+
+    def getcaseinfo(self,name):
         """
         :return:用例信息
         """
         file = self.openfile
         setting = yaml.load(file)
-        caseinfo = setting['caseinfo']
+        caseinfo = setting[name]
         file.close()
         return caseinfo
 
 
 
-    def get_len_base(self):
+    def get_len_base(self,name):
         """
         :return:用例条目
         """
-        caseinfo = self.getcaseinfo
+        caseinfo = self.getcaseinfo(name)
         length = len(caseinfo)
         return length
 
-    def get_case_base(self,i,function):
+    def get_case_base(self,i,function,name):
         """
         获取用例底层方法
         :param i:
         :param function:子类处理用例的方法
         :return:
         """
-        caseinfo = self.getcaseinfo
+        caseinfo = self.getcaseinfo(name)
         case = caseinfo[i]
         caseid = case['caseid']
         casename = case['casename']

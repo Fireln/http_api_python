@@ -10,7 +10,7 @@ class HttpClent:
             "Content-Type":"application/json"
        }
 
-    def do_get(self,url,body):
+    def do_get(self,url,body,type):
         """
             Get接口调用
             根据Parames类型确定传参方式
@@ -22,19 +22,22 @@ class HttpClent:
             response = requests.get(url=url,params=body,headers=self.header)
             return response
 
-    def do_post(self,url,body):
+    def do_post(self,url,body,type):
         """
             Post接口调用
             根据Parames类型确定传参方式
         """
         if len(body) == 0:
-            response = requests.post(url=url,headers=self.header)
+            response = requests.post(url=url)
+            return response
+        elif 'files' in type:
+            response = requests.post(url=url,files=body)
             return response
         else:
-            response = requests.post(url=url,json=body,headers=self.header)
+            response = requests.post(url=url,json=body)
             return response
 
-    def do_put(self,url,body):
+    def do_put(self,url,body,type):
 
         if len(body) == 0:
             response = requests.put(url=url,headers=self.header)
@@ -43,8 +46,7 @@ class HttpClent:
             response = requests.put(url=url,json=body,headers = self.header)
             return response
 
-
-    def do_delete(self,url,body):
+    def do_delete(self,url,body,type):
 
         if len(body) == 0:
             response = requests.delete(url=url,headers=self.header)
@@ -53,7 +55,6 @@ class HttpClent:
             response = requests.delete(url=url,json=body,headers=self.header)
         #print(response_text.status_code)
         return response
-
 
     def run_request(self,host,type,parame,method):
         url = host + parame.get("path")
@@ -68,7 +69,7 @@ class HttpClent:
             if len(type) < 1:
                 pass
             else:
-                response = request[method.lower()](url,body)
+                response = request[method.lower()](url,body,type)
                 return response
 
 

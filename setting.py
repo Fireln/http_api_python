@@ -12,7 +12,8 @@ actpath = os.path.split(os.path.realpath(__file__))[0]+r'\processParames\act.jso
 
 
 testname = {
-    'qa':r'\testcase.yaml'
+    'qa':r'\qacase.yaml',
+    'test':r'\testcase.yaml'
 }
 
 reportname = {

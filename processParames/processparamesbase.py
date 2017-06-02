@@ -85,7 +85,11 @@ class Processing:
 
     def procss_body(self,body):
 
-        return
+        body = self.parames.get('Parames').get("path")
+        value = self.use(body)
+        newbody = str(body) % tuple(value)
+        self.parames["Parames"]["body"] = eval(newbody)
+        return self.parames.get('Parames').get("body")
 
 
     def process_Jsonkey(self,type):

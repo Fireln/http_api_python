@@ -19,20 +19,22 @@ class Run:
             'test_failed':0,
             'test_sum': 0,
         }
-    def qa_run(self):
+
+
+    def into_qa_run(self):
         run = runbase.RunCase()
         casefilename = setting.casedirpath + setting.testname['qa']
-        getcase = getcaseqa.QaBusinessOne(casefilename)
+        getcase = getcaseqa.IntoQA(casefilename)
         function = getcase.getcase
         length = getcase.getlen()
         data = run.runcase(length,function)
         self.process_data(data.get("info"),run.num)
 
 
-    def qarun(self):
+    def publish_qa_run(self):
         run = runbase.RunCase()
         casefilename = setting.casedirpath + setting.testname['qa']
-        getcase = getcaseqa.QaBusinessOne(casefilename)
+        getcase = getcaseqa.PublishQA(casefilename)
         function = getcase.getcase
         length = getcase.getlen()
         data = run.runcase(length,function)
@@ -55,7 +57,6 @@ if __name__ == '__main__':
     Logging = logging_class.Logging()
     Logging.clear_log()#清空日志文件
     r=Run()
-    r.qa_run()
-    r.qarun()
+    r.publish_qa_run()
     r.creatreport()
 

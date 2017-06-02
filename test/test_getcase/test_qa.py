@@ -12,9 +12,10 @@ class Test(unittest.TestCase):
 
     def test_qa(self):
         casefilename = setting.casedirpath+setting.testname['qa']
-        b = getcaseqa.QaBusinessOne(casefilename)
-        b.get_len_base()
-        print(b.getcase(5))
+        b = getcaseqa.PublishQA(casefilename)
+        b.get_len_base("publishqa")
+        print(b.getcase(0))
+
 
 
 

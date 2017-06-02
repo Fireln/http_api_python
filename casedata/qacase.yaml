@@ -1,0 +1,197 @@
+version: 没有版本规划
+author: fireln
+createtime: 2017-05-25
+setting:
+    constenthost: &hostone
+        host:  http://test.jishulink.com:8080/jishulink_test/
+    doctorhost: &dhost
+        host:  http://doctor.test.didixl.com
+
+intoqa:
+
+    -
+        caseid: 1
+        casename: "广告"
+        <<: *hostone
+        method: get
+        type: ["path",] #指定拿哪个值拼路径
+        parames: {
+                    "Parames":
+                        {
+                            "path": "management/ad/group?labels=report",
+                            "body": {},
+                        },
+                    "where": [], #哪里需要用到什么参数
+                    "lastactkey": [], #取出value用到的key路径
+                    "styactkey": [], #取出value用到的key路径
+                    "randomkey": []
+                  }
+        checkdata: {
+            "checktype": "code",
+            "checkdata":
+        }
+        ResponseSaveType: 0
+    -
+        caseid: 2
+        casename: "获取答疑明星"
+        <<: *hostone
+        method: put
+        type: ["path",]
+        parames: {
+                    "Parames":
+                        {
+                            "path": "user/top_activity_users",
+                            "body": {},
+                        },
+                    "where": [],
+                    "lastactkey": [],
+                    "styactkey": [],
+                    "randomkey": []
+                  }
+        checkdata: {
+            "checktype": "code",
+            "checkdata":
+        }
+        ResponseSaveType: 0
+    -
+        caseid: 3
+        casename: "获取未解决提问"
+        <<: *hostone
+        method: put
+        type: ["path",]
+        parames: {
+                    "Parames":
+                        {
+                            "path": "postCommon/college/search?express=QA&resolved=false",
+                            "body": {},
+                        },
+                    "where": [],
+                    "lastactkey": [],
+                    "styactkey": [],
+                    "randomkey": []
+                  }
+        checkdata: {
+            "checktype": "code",
+            "checkdata":
+        }
+        ResponseSaveType: 0
+    -
+        caseid: 4
+        casename: "获取已解决提问"
+        <<: *hostone
+        method: put
+        type: ["path",]
+        parames: {
+                    "Parames":
+                        {
+                            "path": "qa/%s/followed_qa",
+                            "body": {},
+                        },
+                    "where": [["path","userid"]],
+                    "lastactkey": [],
+                    "styactkey": [],
+                    "randomkey": []
+                  }
+        checkdata: {
+            "checktype": "code",
+            "checkdata":
+        }
+        ResponseSaveType: 0
+    -
+        caseid: 5
+        casename: "获取关注的提问"
+        <<: *hostone
+        method: put
+        type: ["path",]
+        parames: {
+                    "Parames":
+                        {
+                            "path": "qa/%s/followed_qa",
+                            "body": {},
+                        },
+                    "where": [["path","userid"]],
+                    "bodykey": [],
+                    "lastactkey": [],
+                    "styactkey": [],
+                    "randomkey": []
+                  }
+        checkdata: {
+            "checktype": "code",
+            "checkdata":
+        }
+        ResponseSaveType: 0
+    -
+        caseid: 6
+        casename: "获取关注的板块"
+        <<: *hostone
+        method: put
+        type: ["path",]
+        parames: {
+                    "Parames":
+                        {
+                            "path": "tpoint/followed/%s/qa",
+                            "body": {},
+                        },
+                    "where": [["path","userid"]],
+                    "lastactkey": [],
+                    "styactkey": [],
+                    "randomkey": []
+                  }
+        checkdata: {
+            "checktype": "code",
+            "checkdata":
+        }
+        ResponseSaveType: 0
+    -
+        caseid: 7
+        casename: "获取提问页右侧技术标签"
+        <<: *hostone
+        method: put
+        type: ["path",]
+        parames: {
+                    "Parames":
+                        {
+                            "path": "tpoint/qa/top_navigation",
+                            "body": {},
+                        },
+                    "where": [],
+                    "lastactkey": [],
+                    "styactkey": [],
+                    "randomkey": []
+                  }
+        checkdata: {
+            "checktype": "code",
+            "checkdata":
+        }
+        ResponseSaveType: 0
+publishqa:
+    -
+        caseid: 8
+        casename: "发布悬赏问答"
+        <<: *hostone
+        method: post
+        type: ["path","files"]
+        parames: {
+                    "Parames":
+                        {
+                            "path": "post/publish",
+                            "body": {
+                             "authorId": [~,'7515dec3-3668-4020-9777-9d5524bf89b9'],
+                             "subject": [~,'dfgfdhghgjh?'],
+                             "bodyText": [~,'sadsad43110'],
+                             "postType": [~,'QA'],
+                             "coins": [~,'20']
+                            },
+                        },
+                    "where": [],
+                    "lastactkey": [],
+                    "styactkey": [],
+                    "randomkey": []
+                  }
+        checkdata: {
+            "checktype": "code",
+            "checkdata":
+        }
+        ResponseSaveType: 0
+
+
